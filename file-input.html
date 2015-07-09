@@ -1,0 +1,62 @@
+<!--
+@license
+Copyright (c) 2015 The BasicElements Project Authors. All rights reserved.
+-->
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+An element providing a easy to style file input element.
+
+Example:
+
+    <file-input></file-input>
+
+@demo
+-->
+<dom-module id="file-input">
+
+  <style>
+    :host {
+      display: inline-block;
+      /*z-index: 1;*/
+      cursor: pointer;
+      box-sizing: border-box;
+      min-width: 80px;
+    }
+  </style>
+
+  <template>
+    <input type="file" hidden></input>
+    <content></content>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'file-input',
+
+    properties: {
+
+      /**
+      * The element you wanna use
+      */
+      is: {
+        type: String,
+        value: 'button'
+      }
+    },
+
+    listeners: {
+      'tap': '_tapHandler'
+    },
+
+    _tapHandler: function () {
+      this.querySelector('input').click();
+    }
+
+  });
+
+</script>
