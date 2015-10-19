@@ -46,6 +46,11 @@ Example:
       is: {
         type: String,
         value: 'button'
+      },
+
+      file: {
+        type: Object,
+        notify: true
       }
     },
 
@@ -54,7 +59,17 @@ Example:
     },
 
     _tapHandler: function () {
-      this.querySelector('input').click();
+      this._input = this.querySelector('input');
+      this._input.click();
+      this._input.addEventListener('change', this._dataBoundHandler.bind(this));
+    },
+
+    _dataBoundHandler: function (e) {
+      // dirty check
+      if (this.file !==  e.target.files[0]) {
+        this.file = e.target.files[0];
+        this.fire('file', this.file);
+      }
     }
 
   });
