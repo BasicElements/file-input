@@ -26,7 +26,7 @@ Example:
   </style>
 
   <template>
-    <input type="file" hidden></input>
+    <input type="file" hidden webkitdirectory$="[[directory]]" directory$="[[directory]]" multiple$="[[multiple]]"></input>
     <content></content>
   </template>
 
@@ -51,6 +51,16 @@ Example:
       file: {
         type: Object,
         notify: true
+      },
+
+      directory: {
+        type: Boolean,
+        value: false
+      },
+
+      multiple: {
+        type: Boolean,
+        value: false
       }
     },
 
@@ -59,7 +69,7 @@ Example:
     },
 
     _tapHandler: function () {
-      this._input = this.querySelector('input');
+      this._input = Polymer.dom(this.root).querySelector('input');
       this._input.click();
       this._input.addEventListener('change', this._dataBoundHandler.bind(this));
     },
